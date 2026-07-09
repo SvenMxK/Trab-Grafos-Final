@@ -14,7 +14,7 @@ alsa-card-profiles
 alsa-lib                       alsa-topology-conf  alsa-ucm-conf  glibc
 alsa-topology-conf             
 alsa-ucm-conf                  
-android-tools                  abseil-cpp  brotli  fmt  glibc  libgcc  libstdc++  libudev.so  lz4  pcre2  protobuf  zlib  zstd
+android-tools                  abseil-cpp  brotli  fmt  glibc  libgcc  libstdc++  libudev.so  libusb  lz4  pcre2  protobuf  zlib  zstd
 aom                            glibc  libgcc  libstdc++
 apparmor                       audit  bash  glibc  libgcc  pam  python  python-legacy-cgi
 appstream                      cairo  curl  fontconfig  freetype2  gdk-pixbuf2  glib2  glibc  libblake3  libfyaml  libgcc  librsvg  libstemmer  libxml2  libxmlb  pango  systemd-libs  zstd
@@ -34,6 +34,7 @@ avahi                          bash  dbus  expat  gdbm  glib2  glibc  libcap  li
 awww                           dav1d  glibc  libgcc  lz4
 bash-completion                bash
 bat                            libgcc  glibc  libgit2  oniguruma  zlib  libgit2.so
+bc                             readline
 bcc-libbpf-tools               glibc  libelf  zlib
 bcg729                         glibc
 bind                           bash  dnssec-anchors  e2fsprogs  glibc  icu  libedit  json-c  krb5  libcap  libidn2  libmaxminddb  libnsl  libuv  libxml2  lmdb  openssl  readline  xz  zlib  jemalloc  libnghttp2  liburcu
@@ -42,7 +43,7 @@ blueman                        bluez  bluez-libs  gtk3  libnm  python-cairo  pyt
 bluez                          systemd-libs  dbus  glib2  alsa-lib  glibc
 bluez-deprecated-tools         json-c  systemd-libs  glib2  dbus  readline  glibc
 bluez-libs                     glibc
-bluez-obex                     glib2  libical  dbus  readline  glibc
+bluez-obex                     glib2  libical  dbus  readline  systemd-libs  glibc
 bluez-utils                    dbus  systemd-libs  glib2  glibc  readline
 bolt                           polkit  systemd
 boost-libs                     bzip2  glibc  icu  libgcc  libstdc++  xz  zlib  zstd
@@ -68,6 +69,7 @@ chromaprint                    glibc  libgcc  libstdc++  libavcodec.so  libavfor
 chromium                       alsa-lib  at-spi2-core  cairo  dbus  desktop-file-utils  expat  glib2  glibc  gtk3  hicolor-icon-theme  libcups  libffi  libgcc  libgcrypt  libpulse  libstdc++  libva  libx11  libxcb  libxcomposite  libxdamage  libxext  libxfixes  libxkbcommon  libxrandr  libxss  mesa  nspr  nss  pango  pciutils  systemd  systemd-libs  ttf-liberation  xdg-utils  zlib  fontconfig  brotli  libjpeg-turbo  openh264  dav1d  flac  libdrm  libxml2  zstd  libwebp  minizip  opus  libxslt  harfbuzz  freetype2
 cifs-utils                     keyutils  krb5  pam  libcap-ng  libwbclient  talloc
 clamav                         bash  bzip2  curl  glibc  json-c  libgcc  libltdl  libmspack  libmilter  libstdc++  libxml2  ncurses  openssl  pcre2  systemd-libs  zlib  libsystemd.so  libncursesw.so  libcurl.so  libjson-c.so  libbz2.so
+clang                          llvm-libs  gcc  compiler-rt  libgcc  libxml2
 cliphist                       glibc  wl-clipboard
 clucene                        libstdc++  libgcc  zlib  glibc
 cmake                          cppdap  curl  expat  glibc  hicolor-icon-theme  jsoncpp  libarchive  libgcc  libstdc++  libuv  ncurses  rhash  zlib
@@ -75,6 +77,7 @@ cmatrix                        ncurses
 colord                         dbus  dconf  gcc-libs  glib2  glibc  lcms2  libgudev  libgusb  polkit  shared-mime-info  sqlite  systemd-libs  libcolord
 colord-gtk-common              
 colord-gtk4                    colord-gtk-common  cairo  glib2  glibc  gtk4  libcolord
+compiler-rt                    glibc  libgcc  libstdc++
 composefs                      gcc-libs  glibc  openssl
 compsize                       glibc
 confuse                        glibc
@@ -92,8 +95,13 @@ deno                           dbus  lcms2  libffi  libgcc  sqlite  wayland  zli
 desktop-file-utils             glib2  glibc  libglib-2.0.so
 discord                        libnotify  libxss  nspr  nss  gtk3  hicolor-icon-theme
 djvulibre                      bash  glibc  hicolor-icon-theme  libgcc  libjpeg-turbo  libstdc++  libtiff
+dkms                           bash  coreutils  gawk  gcc  kmod  make  patch  sed
 dmidecode                      glibc
 dnsmasq                        glibc  gmp  libidn2  libidn2.so  libdbus  libdbus-1.so  nftables  libnetfilter_conntrack  nettle  libnettle.so  libhogweed.so
+dotnet-host                    gcc-libs  glibc
+dotnet-runtime                 dotnet-host  gcc-libs  glibc  icu  krb5  libunwind  zlib  openssl
+dotnet-sdk                     dotnet-runtime  dotnet-targeting-pack  glibc  gcc-libs
+dotnet-targeting-pack          
 double-conversion              gcc-libs  glibc
 dracut                         bash  cpio  coreutils  filesystem  findutils  gawk  grep  kmod  pkgconf  procps-ng  sed  util-linux
 dtc                            bash  glibc  libyaml
@@ -113,6 +121,7 @@ elementary-icon-theme          hicolor-icon-theme
 enchant                        glib2  glibc  libgcc  libstdc++
 espeak-ng                      pcaudiolib  libsonic
 evince                         at-spi2-core  cairo  dconf  djvulibre  exempi  gdk-pixbuf2  glib2  glibc  gnome-desktop  gsettings-desktop-schemas  gsfonts  gspell  gst-plugins-base-libs  gstreamer  gtk3  gvfs  hicolor-icon-theme  libarchive  libgcc  libgxps  libhandy  libsecret  libspectre  libsynctex  libtiff  libxml2  pango  poppler-glib
+evtest                         glibc
 exempi                         expat  glibc  libgcc  libstdc++  zlib
 exfatprogs                     glibc
 exiv2                          brotli  libbrotlidec.so  curl  expat  libexpat.so  gettext  glibc  libcurl.so  libgcc  libinih  libINIReader.so  libstdc++  zlib  libz.so
@@ -156,7 +165,7 @@ ghostscript                    libxt  libcups  fontconfig  zlib  libpng  libjpeg
 giflib                         glibc
 git                            curl  expat  perl  perl-error  perl-mailtools  openssl  pcre2  grep  shadow  zlib-ng
 github-cli                     glibc  mailcap
-gjs                            cairo  dconf  glib2  glibc  gobject-introspection-runtime  js140  libgcc  libffi  libstdc++  libsysprof-capture  libx11  readline  libreadline.so
+gjs                            cairo  dconf  glib2  glibc  gobject-introspection-runtime  js140  libffi  libgcc  libstdc++  libsysprof-capture  libx11  readline  libreadline.so
 glaze                          
 glew                           glibc  libegl  libgl  glu  libx11
 glib-networking                glib2  glibc  gnutls  gsettings-system-schemas  libproxy
@@ -262,7 +271,7 @@ hyprland-guiutils              gcc-libs  glibc  hyprlang  hyprtoolkit  libhyprto
 hyprland-qt-support            gcc-libs  glibc  hyprlang  libhyprlang.so  qt6-base  qt6-declarative
 hyprlang                       libgcc  libstdc++  glibc  hyprutils  libhyprutils.so
 hyprlock                       cairo  libgcc  libstdc++  glib2  libgobject-2.0.so  libglib-2.0.so  glibc  hyprgraphics  libhyprgraphics.so  hyprlang  libhyprlang.so  hyprutils  libhyprutils.so  hyprwayland-scanner  libdrm  libglvnd  libOpenGL.so  libEGL.so  libxkbcommon  libxkbcommon.so  mesa  pam  libpam.so  pango  libpango-1.0.so  libpangocairo-1.0.so  sdbus-cpp  libsdbus-c++.so  wayland  libwayland-client.so  libwayland-egl.so  wayland-protocols
-hyprpaper                      cairo  libcairo.so  libgcc  libstdc++  glibc  hyprgraphics  libhyprgraphics.so  hyprlang  libhyprlang.so  hyprtoolkit  libhyprtoolkit.so  hyprutils  libhyprutils.so  hyprwayland-scanner  hyprwire  libhyprwire.so  libglvnd  pango  wayland
+hyprpaper                      cairo  libcairo.so  file  libmagic.so  glibc  libgcc  libgcc_s.so  libstdc++  libstdc++.so  hyprgraphics  libhyprgraphics.so  hyprlang  libhyprlang.so  hyprtoolkit  libhyprtoolkit.so  hyprutils  libhyprutils.so  hyprwayland-scanner  hyprwire  libhyprwire.so  libglvnd  libGLESv2.so  pango  wayland
 hyprpicker                     cairo  glibc  hyprutils  hyprwayland-scanner  libgcc  libstdc++  libxkbcommon  wayland
 hyprpolkitagent                libgcc  libstdc++  glibc  hyprland-qt-support  hyprutils  libhyprutils.so  polkit-qt6  qt6-base  qt6-declarative
 hyprshot                       bash  grim  jq  libnotify  slurp  wl-clipboard
@@ -309,6 +318,7 @@ jupyter-server                 jupyter-nbconvert  jupyter-nbformat  python  pyth
 jupyterlab                     jupyter-notebook-shim  jupyter-server  python  python-async-lru  python-httpx  python-ipykernel  python-jupyter-builder  python-jupyter-core  python-jupyterlab-server  python-packaging  python-tornado  python-traitlets
 jupyterlab-pygments            python-pygments
 karchive                       bzip2  glibc  libstdc++  openssl  qt6-base  xz  zlib  zstd
+kauth                          libstdc++  glibc  kcoreaddons  kwindowsystem  polkit-qt6  qt6-base
 kbookmarks                     glibc  libstdc++  kconfig  kcoreaddons  kwidgetsaddons  qt6-base
 kcmutils                       libstdc++  glibc  kconfig  kconfigwidgets  kcoreaddons  kguiaddons  ki18n  kio  kirigami  kitemviews  kservice  kwidgetsaddons  kxmlgui  qt6-base  qt6-declarative
 kcodecs                        libstdc++  glibc  qt6-base
@@ -341,6 +351,8 @@ kpipewire                      ffmpeg  glibc  kcoreaddons  ki18n  libdrm  libepo
 kservice                       libstdc++  glibc  kconfig  kcoreaddons  ki18n  qt6-base
 kstatusnotifieritem            glibc  kwindowsystem  libstdc++  qt6-base
 kwallet                        libgcc  libstdc++  glib2  glibc  gpgmepp  kcolorscheme  kconfig  kcoreaddons  kcrash  kdbusaddons  ki18n  knotifications  kwidgetsaddons  kwindowsystem  libgcrypt  libsecret  qca-qt6  qt6-base
+kwallet-pam                    glibc  kwallet  libgcrypt  pam  sh  socat
+kwalletmanager                 glibc  karchive  kauth  kcmutils  kcodecs  kconfig  kconfigwidgets  kcoreaddons  kcrash  kdbusaddons  ki18n  kio  kitemviews  kservice  kstatusnotifieritem  kwallet  kwidgetsaddons  kwindowsystem  kxmlgui  libstdc++  qt6-base
 kwidgetsaddons                 libstdc++  glibc  qt6-base
 kwindowsystem                  glibc  libstdc++  libx11  libxcb  libxfixes  qt6-base  wayland  xcb-util-keysyms
 kxmlgui                        libstdc++  glibc  kconfig  kconfigwidgets  kcoreaddons  kglobalaccel  kguiaddons  ki18n  kiconthemes  kitemviews  kwidgetsaddons  qt6-base
@@ -408,7 +420,7 @@ libdvbpsi                      glibc
 libdvdnav                      glibc  libdvdread
 libdvdread                     glibc
 libe-book                      librevenge  libxml2  liblangtag  zlib  icu  glibc  libstdc++  libgcc
-libebml                        gcc-libs
+libebml                        glibc  libgcc  libstdc++
 libebur128                     glibc
 libei                          gcc-libs  glibc  libevdev  systemd-libs
 libepoxy                       glibc  libglvnd  libx11
@@ -434,6 +446,7 @@ libgit2                        libgcc  glibc  llhttp  zlib  libssh2  libssh2.so 
 libglibutil                    glib2
 libglvnd                       libxext  mesa  opengl-driver
 libgme                         glibc  libstdc++  zlib
+libgmobile                     libgcc  glib2  glibc  json-glib
 libgoa                         glib2  libglib-2.0.so  libgobject-2.0.so  libgio-2.0.so  glibc
 libgoom2                       glibc
 libgsf                         bzip2  gdk-pixbuf2  glib2  glibc  libxml2  zlib
@@ -549,7 +562,7 @@ libsndfile                     glibc  flac  libFLAC.so  lame  libmp3lame.so  lib
 libsodium                      glibc
 libsonic                       
 libsoup3                       brotli  glib-networking  glib2  glibc  krb5  libnghttp2  libpsl  libsysprof-capture  sqlite  zlib  libbrotlidec.so  libgssapi_krb5.so  libglib-2.0.so  libgobject-2.0.so  libgio-2.0.so  libpsl.so
-libsoxr                        gcc-libs
+libsoxr                        glibc  libgcc  libgomp
 libspectre                     ghostscript  glibc
 libspeechd                     glib2  libtool
 libspelling                    enchant  gcc-libs  glib2  glibc  gtk4  gtksourceview5  icu  pango
@@ -564,7 +577,7 @@ libtatsu                       curl  glibc  libplist
 libteam                        bash  glibc  jansson  libdaemon  libdbus  libnl  zeromq
 libthai                        glibc  libdatrie
 libtheora                      glibc  libogg
-libtiff                        gcc-libs  glibc  jbigkit  libdeflate  libjpeg-turbo  libjpeg.so  libwebp  xz  zlib  zstd
+libtiff                        libstdc++  glibc  jbigkit  libdeflate  libjpeg-turbo  libjpeg.so  libwebp  xz  zlib  zstd
 libtiger                       pango  libkate
 libtommath                     glibc
 libtraceevent                  glibc
@@ -579,7 +592,7 @@ libusbmuxd                     glibc  libgcc  libimobiledevice-glue  libplist
 libutempter                    glibc
 libutf8proc                    glibc
 libuv                          glibc  libnsl
-libva                          libdrm  libgl  libx11  libxext  libxfixes  wayland
+libva                          glibc  libdrm  libgl  libx11  libxcb  libxext  libxfixes  wayland
 libva-utils                    libva
 libvdpau                       glibc  libx11  libxext
 libvisio                       libxml2  icu  librevenge  glibc  libstdc++  libgcc
@@ -642,7 +655,9 @@ lilv                           glibc  serd  libserd-0.so  sord  libsord-0.so  sr
 lirc                           alsa-lib  libx11  libftdi  libusb-compat
 live-media                     gcc-libs  openssl
 lksctp-tools                   glibc  bash
+lld                            llvm-libs  libstdc++  glibc  zlib  zstd
 llhttp                         glibc
+llvm                           llvm-libs  curl  perl  libstdc++  glibc  libgcc
 llvm-libs                      libgcc  glibc  libstdc++  zlib  zstd  libffi  libedit  libxml2
 llvm21-libs                    gcc-libs  zlib  zstd  libffi  libedit  libxml2
 lm_sensors                     bash  glibc
@@ -719,6 +734,7 @@ osinfo-db
 ostree                         bash  composefs  fuse3  glibc  libgcc  libgpg-error  libsodium  sh  util-linux  which  zlib  avahi  libavahi-client.so  libavahi-common.so  libavahi-glib.so  curl  libcurl.so  glib2  libgio-2.0.so  libglib-2.0.so  libgobject-2.0.so  gpgme  libgpgme.so  libarchive  libarchive.so  openssl  libcrypto.so  systemd-libs  libsystemd.so  xz  liblzma.so
 otf-font-awesome               
 pacman-contrib                 pacman
+pahole                         bash  glibc  libelf  zlib
 pango                          cairo  fontconfig  freetype2  fribidi  glib2  glibc  harfbuzz  libsysprof-capture  libthai  libx11  libxft  libxrender
 pangomm                        cairomm  glib2  glibc  glibmm  libgcc  libsigc++  libstdc++  pango  libcairomm-1.0.so  libglibmm-2.4.so  libsigc-2.0.so
 pangomm-2.48                   cairomm-1.16  glib2  glibc  glibmm-2.68  libgcc  libsigc++-3.0  libstdc++  pango  libcairomm-1.16.so  libglibmm-2.68.so  libsigc-3.0.so
@@ -735,6 +751,7 @@ perl-locale-gettext            gettext  perl
 perl-mailtools                 perl-timedate
 perl-term-animation            perl-curses
 perl-timedate                  perl
+phoc                           cairo  dconf  libgcc  glib2  glibc  gnome-desktop  gsettings-desktop-schemas  hicolor-icon-theme  libgmobile  libinput  libxcb  libxkbcommon  mutter  pango  pixman  systemd-libs  wayland  wlroots0.20  xorg-xwayland
 pipewire                       libpipewire  libpipewire-0.3.so  dbus  libdbus-1.so  glib2  libglib-2.0.so  glibc  libgcc  ncurses  libncursesw.so  readline  libreadline.so  systemd-libs  libsystemd.so  libudev.so
 pipewire-alsa                  pipewire-audio  pipewire  pipewire-session-manager
 pipewire-audio                 libpipewire  libpipewire-0.3.so  pipewire  alsa-card-profiles  alsa-lib  libasound.so  bluez-libs  libbluetooth.so  dbus  libdbus-1.so  fftw  libfftw3f.so  glib2  libglib-2.0.so  libgobject-2.0.so  libgio-2.0.so  glibc  libebur128  libfdk-aac  libfdk-aac.so  libfreeaptx  libfreeaptx.so  libgcc  liblc3  liblc3.so  libldac  libldacBT_enc.so  libmysofa  libmysofa.so  libsndfile  libsndfile.so  libstdc++  libusb  libusb-1.0.so  lilv  liblilv-0.so  opus  libopus.so  sbc  libsbc.so  spandsp  libspandsp.so  systemd-libs  webrtc-audio-processing-1  libwebrtc-audio-processing-1.so
@@ -839,7 +856,7 @@ python-markupsafe              glibc  python
 python-matplotlib              glibc  freetype2  libgcc  libstdc++  python  python-contourpy  python-cycler  python-dateutil  python-fonttools  python-kiwisolver  python-numpy  python-packaging  python-pillow  python-pyparsing  qhull
 python-matplotlib-inline       python-traitlets
 python-mdurl                   python
-python-mistune                 python
+python-mistune                 python  python-typing_extensions
 python-more-itertools          python
 python-msgpack                 python
 python-mutagen                 python
@@ -983,10 +1000,10 @@ qemu-tests                     qemu-common
 qemu-tools                     curl  libcurl.so  glib2  libgcc  libglib-2.0.so  libgmodule-2.0.so  glibc  libxkbcommon  libxkbcommon.so  python  qemu-common
 qemu-ui-curses                 glib2  libgcc  libglib-2.0.so  glibc  ncurses  libncursesw.so  qemu-common
 qemu-ui-dbus                   glib2  libgcc  libgio-2.0.so  libgobject-2.0.so  libglib-2.0.so  glibc  libepoxy  pixman  libpixman-1.so  qemu-common
-qemu-ui-egl-headless           glibc  libepoxy  pixman  libpixman-1.so  qemu-common  qemu-ui-opengl
+qemu-ui-egl-headless           glibc  pixman  libpixman-1.so  qemu-common  qemu-ui-opengl
 qemu-ui-gtk                    cairo  gdk-pixbuf2  libgdk_pixbuf-2.0.so  glib2  libgobject-2.0.so  libglib-2.0.so  glibc  gtk3  libgdk-3.so  libgtk-3.so  libepoxy  libx11  pixman  libpixman-1.so  qemu-common  qemu-ui-opengl  vte3  libvte-2.91.so
 qemu-ui-opengl                 glibc  libgcc  libepoxy  mesa  pixman  libpixman-1.so  qemu-common
-qemu-ui-sdl                    glib2  libglib-2.0.so  glibc  libx11  pixman  libpixman-1.so  qemu-common  sdl2_image  sdl2
+qemu-ui-sdl                    glib2  libglib-2.0.so  glibc  libx11  pixman  libepoxy  libpixman-1.so  qemu-common  sdl2_image  sdl2
 qemu-ui-spice-app              glib2  libgio-2.0.so  libglib-2.0.so  glibc  qemu-common  qemu-chardev-spice  qemu-ui-spice-core
 qemu-ui-spice-core             glibc  pixman  libgcc  libpixman-1.so  qemu-common  qemu-ui-opengl  spice  libspice-server.so
 qemu-user                      capstone  glib2  libgcc  libglib-2.0.so  libgmodule-2.0.so  glibc  gnutls  libelf  liburing  liburing.so  numactl  libnuma.so  qemu-common  zlib
@@ -1014,7 +1031,7 @@ qt6-wayland                    gcc-libs  glibc  libglvnd  libxkbcommon  qt6-base
 qt6ct                          glibc  libgcc  libstdc++  qt6-base  qt6-svg
 raptor                         glibc  libxml2  libxslt  curl  libcurl.so  icu  libicuuc.so
 rasqal                         glibc  mpfr  pcre2  sh  raptor  libraptor2.so
-rav1e                          gcc-libs  glibc
+rav1e                          glibc  libgcc
 rdma-core                      bash  glibc  libnl  perl  systemd-libs
 re2                            abseil-cpp  glibc  libgcc
 redland                        rasqal  raptor  libltdl  sh  glibc
@@ -1044,6 +1061,9 @@ ruby-sass-listen               ruby  ruby-rb-inotify  ruby-rb-fsevent
 ruby-webrick                   ruby  ruby-erb
 ruby-yard                      ruby  ruby-rdoc  ruby-webrick
 rubygems                       ruby
+rust                           bash  compiler-rt  curl  gcc  glibc  libgcc  libgit2  libssh2  libstdc++  lld  llvm-libs  openssl  sqlite  zlib  libcurl.so  libgcc_s.so  libgit2.so  libsqlite3.so  libssh2.so  libssl.so
+rust-bindgen                   libgcc  glibc  clang
+rust-src                       rust
 rutabaga-ffi                   glibc  gcc-libs  virglrenderer  gfxstream
 rygel                          gdk-pixbuf2  glib2  glibc  gssdp  gst-editing-services  gst-plugins-base-libs  gstreamer  gtk4  gupnp  gupnp-av  gupnp-dlna  hicolor-icon-theme  libgee  libmediaart  libsoup3  libunistring  libx11  libxml2  sqlite  tinysparql
 samba                          gnutls  gpgme  ldb  libbsd  libcups  libcap  libldb.so  libtdb.so  libtevent.so  liburing  libwbclient  popt  python  smbclient  talloc  tdb
@@ -1079,6 +1099,7 @@ snap-pac                       snapper  pacman  btrfs-progs  python
 snapper                        btrfs-progs  libxml2  dbus  boost-libs  acl  json-c
 snappy                         glibc  libstdc++
 sndio                          alsa-lib  libbsd
+socat                          glibc  openssl  libssl.so  readline  libreadline.so
 sof-firmware                   
 solid                          libstdc++  glibc  libimobiledevice  libplist  media-player-info  qt6-base  systemd-libs  udisks2  upower  util-linux-libs
 sord                           glibc  pcre2  serd  libserd-0.so  zix  libzix-0.so
@@ -1096,11 +1117,13 @@ squashfs-tools                 glibc  libgcc  libgcc_s.so  lz4  liblz4.so  lzo  
 sratom                         glibc  serd  libserd-0.so  sord  libsord-0.so  lv2
 srt                            bash  glibc  libgcc  libstdc++  openssl
 startup-notification           glibc  libx11  libxcb  xcb-util
+strace                         glibc  libunwind
 svt-av1                        glibc
 svt-hevc                       glibc
 swaybg                         wayland  cairo  gdk-pixbuf2
 swaync                         gtk4  gtk4-layer-shell  libadwaita  glib2  libgee  json-glib  libpulse  granite7
 swayosd                        glibc  gtk4  gtk4-layer-shell  libinput  gdk-pixbuf2  pango  libevdev  libpulse  systemd-libs  glib2  cairo  dbus  libgcc
+swi-prolog                     db5.3  gperftools  libarchive  libxcrypt  libyaml  qt5-base  util-linux-libs
 syndication                    libgcc  libstdc++  glibc  kcodecs  qt6-base
 sysfsutils                     glibc
 taglib                         glibc  libgcc  libstdc++  sh  zlib
@@ -1267,6 +1290,8 @@ wireplumber                    libwireplumber  glibc  libgcc  libglib-2.0.so  li
 wireshark-cli                  bcg729  brotli  c-ares  glib2  glibc  gnutls  krb5  libbrotlidec.so  libcap  libcap.so  libcares.so  libgcc  libgcrypt  libk5crypto.so  libkrb5.so  libmaxminddb  libnghttp2  libnghttp3  libnl  libpcap  libpcap.so  libssh  libxml2  lua54  lz4  opencore-amr  opus  pcre2  sbc  snappy  spandsp  speexdsp  systemd-libs  xxhash  zlib-ng  zstd
 wireshark-qt                   desktop-file-utils  glib2  glibc  hicolor-icon-theme  libgcc  libgcrypt  libnl  libpcap  libpcap.so  libstdc++  libwireshark.so  libwiretap.so  libwsutil.so  minizip  qt6-5compat  qt6-base  qt6-multimedia  qt6-svg  shared-mime-info  speexdsp  wireshark-cli  xdg-utils
 wl-clipboard                   glibc  wayland
+wlr-randr                      wayland  glibc
+wlroots0.20                    glibc  libdisplay-info.so  libdrm  libglvnd  libinput  liblcms2.so  libliftoff.so  libpixman-1.so  libseat.so  libudev.so  libvulkan.so  libwayland-client.so  libwayland-server.so  libxcb  libxkbcommon.so  wayland-protocols  opengl-driver  xcb-util-errors  xcb-util-renderutil  xcb-util-wm
 woff2                          brotli  gcc-libs  glibc
 woff2-font-awesome             
 wolfssl                        glibc
@@ -1361,7 +1386,7 @@ yt-dlp-ejs                     deno  python
 yyjson                         glibc
 zbar                           dbus  imagemagick  libxv  v4l-utils
 zeromq                         glibc  gnutls  util-linux  libsodium  libpgm  libgcc  libstdc++
-zimg                           gcc-libs  glibc
+zimg                           glibc  libgcc  libstdc++
 zint                           glibc  libpng
 zip                            bzip2
 zix                            glibc

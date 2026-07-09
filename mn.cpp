@@ -223,9 +223,10 @@ void imprimir_transitivas(const vector<string>& nomes, const vector<vector<int>>
     for (auto& n : nomes_deps) cout << "  - " << n << '\n';
 }
  
-void imprimir_sccs(const vector<string>& nomes, const vector<vector<int>>& sccs) {
+void imprimir_sccs(const vector<string>& nomes, const vector<vector<int>>& sccs,
+                                                bool apenas_ciclos, bool todos_ciclos) {
     separador('=');
-    cout << "COMPONENTES FORTEMENTE CONEXOS (TARJAN)\n";
+    cout << "COMPONENTES FORTEMENTE CONEXOS\n";
     separador('=');
     int n_ciclicos = 0;
     for (auto& scc : sccs) if (scc.size() > 1) n_ciclicos++;
@@ -237,6 +238,7 @@ void imprimir_sccs(const vector<string>& nomes, const vector<vector<int>>& sccs)
     for (int i = 0; i < (int)sccs.size(); i++) {
         const auto& scc = sccs[i];
         bool tem_ciclo = scc.size() > 1;
+        if (!todos_ciclos && !tem_ciclo) continue;
         cout << "  SCC #" << i << " [" << (tem_ciclo ? "CICLO" : "trivial") << "]"
              << " (" << scc.size() << " pacote(s)): ";
         for (int j = 0; j < (int)scc.size(); j++) {
@@ -301,7 +303,7 @@ void imprimir_condensacao_e_topologica(const vector<string>& nomes,
         cout << "  Passo " << setw(3) << pos + 1 << ": "
              << nome_scc(scc_id);
         if (scc.size() > 1)
-            cout << "  <-- CICLO: requer intervencao manual";
+            cout << "  <-- CICLO";
         cout << '\n';
     }
 }
@@ -309,26 +311,37 @@ void imprimir_condensacao_e_topologica(const vector<string>& nomes,
 // Inspiracao de CG
 static void uso(const char* prog) {
     cerr << "Uso:\n"
-         << "  " << prog << " ARQUIVO.txt [--pacote NOME] [--dot ARQUIVO.dot]\n"
+         << "  " << prog << " ARQUIVO.txt [--pacote NOME] [--apenas-ciclos [todos]]\n"
          << '\n'
          << "Opcoes:\n"
-         << "  ARQUIVO.txt      Arquivo de dependencias no formato texto\n"
-         << "                     (uma linha por pacote: PACOTE DEP1 DEP2 ...)\n"
-         << "  --pacote NOME    Exibe dependencias transitivas do pacote NOME\n"
+         << "  ARQUIVO.txt        Arquivo de dependencias no formato texto\n"
+         << "                       (uma linha por pacote: PACOTE DEP1 DEP2 ...)\n"
+         << "  --pacote NOME      Exibe dependencias transitivas do pacote NOME\n"
+         << "  --apenas-ciclos    Exibe somente os SCCs ciclicos (ignora SCCs\n"
+         << "                       triviais) e omite condensacao/topologica\n"
+         << "  [todos]            Seguido de --apenas-ciclos imprime ciclos triviais tambem"
          << '\n';
 }
  
 int main(int argc, char* argv[]) {
     if (argc < 2) { uso(argv[0]); return 1; }
  
-    string arquivo_entrada, pacote_consulta, arquivo_dot;
+    string arquivo_entrada, pacote_consulta;
+    bool apenas_ciclos = false;
+    bool todos_ciclos = false;
+    bool pacote = false;
  
     for (int i = 1; i < argc; i++) {
         string arg = argv[i];
         if (arg == "--pacote" && i + 1 < argc) {
             pacote_consulta = argv[++i];
-        } else if (arg == "--dot" && i + 1 < argc) {
-            arquivo_dot = argv[++i];
+            pacote = true;
+
+        } else if (arg == "--apenas-ciclos") {
+            apenas_ciclos = true;
+            if (i + 1 < argc && string(argv[++i]) == "todos") {
+                todos_ciclos = true;
+            }
         } else if (arquivo_entrada.empty()) {
             arquivo_entrada = arg;
         } else {
@@ -354,22 +367,27 @@ int main(int argc, char* argv[]) {
     }
  
     separador('*');
-    cout << "  ANALISADOR DE GRAFOS DE DEPENDENCIA (estilo simples)\n";
+    cout << "  ANALISADOR DE GRAFOS DE DEPENDENCIA\n";
     separador('*');
     cout << "Arquivo : " << arquivo_entrada << '\n';
     cout << '\n';
  
-    imprimir_grafo(nomes, adj);
-    cout << '\n';
- 
+    if (!apenas_ciclos && pacote_consulta.empty()) {
+        imprimir_grafo(nomes, adj);
+        cout << '\n';
+    }
+
     if (!pacote_consulta.empty()) {
         imprimir_transitivas(nomes, adj, pacote_consulta);
         cout << '\n';
+        return 0;
     }
  
     vector<vector<int>> sccs = tarjan_sccs(adj);
-    imprimir_sccs(nomes, sccs);
+    imprimir_sccs(nomes, sccs, apenas_ciclos, todos_ciclos);
     cout << '\n';
+
+    if(apenas_ciclos) {return 0;}
  
     vector<int> rotulo;
     vector<vector<int>> cond = condensar(adj, sccs, rotulo);
